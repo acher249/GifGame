@@ -1,22 +1,12 @@
 //ADD GIF Button ************************************
-$("#addButton").on("click", function(event) {
-    var newGifInput = $(".form-control").val();
-    var topicBtn = $("<button>");
-    topicBtn.addClass("topic-button");
-    topicBtn.text(newGifInput);
-    $(".dropButtons").append(topicBtn);
-    console.log(newGifInput);
-});
+
+var topicsArray = ["pig","llama","cat","dog"];
 
 $(document).ready(function() {
     welcomeAlert();
 
-    // Array of Animals
-    var topicsArray = ["pig","llama","cat","dog"];
-
     // Create Buttons from Array..
     for (var i = 0; i < topicsArray.length; i++) {
-
     var topicBtn = $("<button>");
     topicBtn.addClass("topic-button");
     topicBtn.text(topicsArray[i]);
@@ -25,8 +15,19 @@ $(document).ready(function() {
     }
 });
 
-
-
+$("#add-Button").on("click", function(event) {
+    var newGifInput = $(".form-control").val();
+    if(topicsArray.includes(newGifInput)){
+        console.log("A " + newGifInput + " button already exists.");
+    }
+    else{
+        var topicBtn = $("<button>");
+        topicBtn.addClass("topic-button");
+        topicBtn.text(newGifInput);
+        $(".dropButtons").append(topicBtn);
+        topicsArray.push(newGifInput);
+    }
+});
 
 // On click of any button
 $(".topic-button").on("click", function() {
