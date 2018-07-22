@@ -11,7 +11,6 @@ $(document).ready(function() {
     topicBtn.addClass("topic-button");
     topicBtn.text(topicsArray[i]);
     $(".dropButtons").append(topicBtn);
-
     }
 });
 
@@ -19,6 +18,16 @@ $("#add-Button").on("click", function(event) {
     var newGifInput = $(".form-control").val();
     if(topicsArray.includes(newGifInput)){
         console.log("A " + newGifInput + " button already exists.");
+        //Alert
+        swal({
+            title: "A " + newGifInput +  " Topic Already Exists",
+            icon: "error",
+            text: "Try and new Topic",
+            button: "Gif Time", 
+        })
+        .then(() => {
+            //Do somthing on click
+        });
     }
     else{
         var topicBtn = $("<button>");
@@ -26,6 +35,7 @@ $("#add-Button").on("click", function(event) {
         topicBtn.text(newGifInput);
         $(".dropButtons").append(topicBtn);
         topicsArray.push(newGifInput);
+        //make the input field clear
     }
 });
 
@@ -49,4 +59,4 @@ swal({
 .then(() => {
     //Do somthing on click
     });
-}
+};
