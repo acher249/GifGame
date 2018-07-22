@@ -1,6 +1,6 @@
 //ADD GIF Button ************************************
-
-var topicsArray = ["pig","llama","cat","dog"];
+//original array displayed on start
+var topicsArray = ["Pig","Llama","Cat","Dog"];
 
 $(document).ready(function() {
     welcomeAlert();
@@ -16,11 +16,14 @@ $(document).ready(function() {
 
 $("#add-Button").on("click", function(event) {
     var newGifInput = $(".form-control").val();
+    console.log("original: " + newGifInput);
+    newGifInput =  capitalizeFirstLetter(newGifInput);
+    console.log("uppcercase: " + newGifInput);
     if(topicsArray.includes(newGifInput)){
         console.log("A " + newGifInput + " button already exists.");
         //Alert
         swal({
-            title: "A " + newGifInput +  " Topic Already Exists",
+            title: "A " + newGifInput +  " Already Exists",
             icon: "error",
             text: "Try and new Topic",
             button: "Gif Time", 
@@ -60,3 +63,8 @@ swal({
     //Do somthing on click
     });
 };
+
+//uppercase first letter of input before pushing into array
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
