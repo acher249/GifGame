@@ -46,8 +46,40 @@ $("#add-Button").on("click", function(event) {
 $(".topic-button").on("click", function() {
 
     console.log("clicked topic button");
-    //hit the giphy API with the text of the button.
-    // fridgeMagnet.text($(this).attr("data-letter"));
+
+    //ADD ID?
+    // //get addButton so that we can add an id to it
+    // var addButton = $("#add-Button");
+    // addButton.attr("id", newGifInput);
+    
+    var buttonClicked = this.text;
+    console.log("button clicked: " + buttonClicked);
+    // Storing our giphy API URL for a random cat image
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonClicked;
+
+    // Perfoming an AJAX GET request to our queryURL
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+
+    // After the data from the AJAX request comes back
+    .then(function(response) {
+        console.log(response);
+
+    // Saving the image_original_url property
+        var imageUrl = response.data.image_original_url;
+
+        // Creating and storing an image tag
+        var catImage = $("<img>");
+
+        // Setting the catImage src attribute to imageUrl
+        catImage.attr("src", imageUrl);
+        catImage.attr("alt", "cat image");
+
+        // Prepending the catImage to the images div
+        $("#images").prepend(catImage);
+    });
 
   });
 
