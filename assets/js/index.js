@@ -10,6 +10,7 @@ $(document).ready(function() {
     var topicBtn = $("<button>");
     topicBtn.addClass("topic-button");
     topicBtn.addClass(topicsArray[i]);
+    topicBtn.attr("id", topicsArray[i]);
     topicBtn.text(topicsArray[i]);
     $(".dropButtons").append(topicBtn);
     }
@@ -50,6 +51,7 @@ $(document).ready(function() {
                 var topicBtn = $("<button>");
                 topicBtn.addClass("topic-button");
                 topicBtn.addClass(newGifInput);
+                topicBtn.attr("id", newGifInput);
                 topicBtn.text(newGifInput);
                 $(".dropButtons").append(topicBtn);
                 topicsArray.push(newGifInput);
@@ -70,45 +72,82 @@ $(document).ready(function() {
             });
         }
     });
-
-
-    // On click of any button
-    $(".topic-button").on("click", function() {
     
-        console.log("clicked topic button");
+    //get on click of dynamically created buttons
+    document.querySelector("#dropButtons").addEventListener("click", function (event) {
+        if (event.target.classList.contains("topic-button")) {
         
-        //START HERE:
-        //Get the "pausing gifs" example..
-        //this is not working ********************
-        var buttonId = this.id;
-        console.log("button clicked: " + buttonId);
+            // alert(event.srcElement.id);
 
-        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
+            var buttonId = event.srcElement.id;
+            // console.log("button clicked: " + buttonId);
     
-
-        $.ajax({
-        url: queryURL,
-        method: "GET"
-        })
+            var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
         
-        .then(function(response) {
-            console.log(response);
     
-            // Saving the image_original_url property
-            var imageUrl = response.data.image_original_url;
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+            })
+            
+            .then(function(response) {
+                console.log(response);
+        
+                // Saving the image_original_url property
+                var imageUrl = response.data.image_original_url;
+        
+                // Creating and storing an image tag
+                var catImage = $("<img>");
+        
+                // Setting the catImage src attribute to imageUrl
+                catImage.attr("src", imageUrl);
+                catImage.attr("alt", "cat image");
+        
+                // Prepending the catImage to the images div
+                $(".dropImages").append(catImage);
+            });
+            
+        }
+    })
+
+
+    // // On click of any button
+    // $(".topic-button").on("click", function() {
     
-            // Creating and storing an image tag
-            var catImage = $("<img>");
+    //     console.log("clicked topic button");
+        
+    //     //START HERE:
+    //     //Get the "pausing gifs" example..
+    //     //this is not working ********************
+    //     var buttonId = this.id;
+    //     console.log("button clicked: " + buttonId);
+
+    //     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
     
-            // Setting the catImage src attribute to imageUrl
-            catImage.attr("src", imageUrl);
-            catImage.attr("alt", "cat image");
+
+    //     $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    //     })
+        
+    //     .then(function(response) {
+    //         console.log(response);
     
-            // Prepending the catImage to the images div
-            $(".dropImages").append(catImage);
-        });
+    //         // Saving the image_original_url property
+    //         var imageUrl = response.data.image_original_url;
     
-      });
+    //         // Creating and storing an image tag
+    //         var catImage = $("<img>");
+    
+    //         // Setting the catImage src attribute to imageUrl
+    //         catImage.attr("src", imageUrl);
+    //         catImage.attr("alt", "cat image");
+    
+    //         // Prepending the catImage to the images div
+    //         $(".dropImages").append(catImage);
+    //     });
+    
+    // });
     
     //Alerts*********************
     function welcomeAlert() {    
