@@ -27,49 +27,6 @@ $(document).ready(function() {
         welcomeAlert.then();
     });
 
-    // $("#add-Button").on("click", function(event) {
-    //     var newGifInput = $(".form-control").val();
-    //     newGifInput =  capitalizeFirstLetter(newGifInput);
-
-    //     if(newGifInput.length > 0){
-    //         if(topicsArray.includes(newGifInput)){
-    //             console.log('A ' + newGifInput + ' button already exists.');
-    //             //Alert
-    //             swal({
-    //                 title: "A " + newGifInput +  " Button Already Exists",
-    //                 icon: "error",
-    //                 text: "Try and new Topic",
-    //                 button: "Gif Time", 
-    //             })
-    //             .then(() => {
-    //                 //Do somthing on click
-    //             });
-    //         }
-    //         else{
-    //             var topicBtn = $("<button>");
-    //             topicBtn.addClass("topic-button");
-    //             topicBtn.addClass(newGifInput);
-    //             topicBtn.text(newGifInput);
-    //             $(".dropButtons").append(topicBtn);
-    //             topicsArray.push(newGifInput);
-    //             //make the input field clear
-    //         }
-    //     }
-    //     else{
-    //         //Alert
-    //         swal({
-    //             title: "You Didn't Enter Anything. Lame.",
-    //             icon: "error",
-    //             text: "Please add a topic",
-    //             button: "Try Again", 
-    //         })
-    //         .then(() => {
-    //             //Do somthing on click
-    //         });
-    //     }
-
-    // });
-
     $(document).on('click', '#add-Button', function(){
     
         var newGifInput = $(".form-control").val();
