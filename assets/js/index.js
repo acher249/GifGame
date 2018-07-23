@@ -4,6 +4,7 @@ var topicsArray = ["Pig","Llama","Cat","Dog"];
 
 $(document).ready(function() {
     welcomeAlert();
+    // document.getElementById("inputForm").focus();
 
     // Create Buttons from Array..
     for (var i = 0; i < topicsArray.length; i++) {
@@ -35,7 +36,8 @@ $(document).ready(function() {
 
         if(newGifInput.length > 0){
             if(topicsArray.includes(newGifInput)){
-                console.log('A ' + newGifInput + ' button already exists.');
+                // console.log('A ' + newGifInput + ' button already exists.');
+                $(".form-control").val("");
                 //Alert
                 swal({
                     title: "A " + newGifInput +  " Button Already Exists",
@@ -106,45 +108,6 @@ $(document).ready(function() {
             
         }
     })
-
-
-    // // On click of any button
-    // $(".topic-button").on("click", function() {
-    
-    //     console.log("clicked topic button");
-        
-    //     //START HERE:
-    //     //Get the "pausing gifs" example..
-    //     //this is not working ********************
-    //     var buttonId = this.id;
-    //     console.log("button clicked: " + buttonId);
-
-    //     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
-    
-
-    //     $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    //     })
-        
-    //     .then(function(response) {
-    //         console.log(response);
-    
-    //         // Saving the image_original_url property
-    //         var imageUrl = response.data.image_original_url;
-    
-    //         // Creating and storing an image tag
-    //         var catImage = $("<img>");
-    
-    //         // Setting the catImage src attribute to imageUrl
-    //         catImage.attr("src", imageUrl);
-    //         catImage.attr("alt", "cat image");
-    
-    //         // Prepending the catImage to the images div
-    //         $(".dropImages").append(catImage);
-    //     });
-    
-    // });
     
     //Alerts*********************
     function welcomeAlert() {    
@@ -155,7 +118,8 @@ $(document).ready(function() {
         button: "Gif Time", 
     })
     .then(() => {
-        //Do somthing on click
+            //focus the input field so that the user can just start typing
+            document.getElementById("inputForm").focus();
         });
     };
     
