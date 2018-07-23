@@ -76,15 +76,12 @@ $(document).ready(function() {
     //get on click of dynamically created buttons
     document.querySelector("#dropButtons").addEventListener("click", function (event) {
         if (event.target.classList.contains("topic-button")) {
-        
-            // alert(event.srcElement.id);
-
-            var buttonId = event.srcElement.id;
-            // console.log("button clicked: " + buttonId);
     
+            var buttonId = event.srcElement.id;
+            
+            //now get multiple gifs at once not only one. rad up in Giphy docs.
             var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
         
-    
             $.ajax({
             url: queryURL,
             method: "GET"

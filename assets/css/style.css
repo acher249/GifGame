@@ -33,6 +33,11 @@
     margin-bottom: 10px;
 }
 
+.gifRow {
+    padding-right: 2%;
+    padding-left: 2%;
+}
+
 .card-body2{
     padding-top: 0px;
     padding-bottom: 0px;
@@ -54,4 +59,8 @@
     margin-right: 20px;
     margin-bottom: 20px;
 
+}
+
+.card {
+    min-height: 168px;
 }
