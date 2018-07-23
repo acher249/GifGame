@@ -48,7 +48,9 @@ $(document).ready(function() {
     
         console.log("clicked topic button");
         
-        //this is not working
+        //START HERE:
+        //Get the "pausing gifs" example..
+        //this is not working ********************
         var buttonId = this.id;
         console.log("button clicked: " + buttonId);
 
