@@ -46,7 +46,7 @@ $(document).ready(function() {
                     button: "Gif Time", 
                 })
                 .then(() => {
-                    //Do somthing on click
+                    document.getElementById("inputForm").focus();
                 });
             }
             else{
@@ -59,6 +59,7 @@ $(document).ready(function() {
                 topicsArray.push(newGifInput);
                 //make the input field clear
                 $(".form-control").val("");
+                document.getElementById("inputForm").focus();
             }
         }
         else{
@@ -70,7 +71,7 @@ $(document).ready(function() {
                 button: "Try Again", 
             })
             .then(() => {
-                //Do somthing on click
+                document.getElementById("inputForm").focus();
             });
         }
     });
@@ -104,6 +105,9 @@ $(document).ready(function() {
         
                 // Prepending the catImage to the images div
                 $(".dropImages").append(catImage);
+
+                document.getElementById("inputForm").focus();
+
             });
             
         }
@@ -164,7 +168,7 @@ $(document).ready(function() {
                 $(document).attr('title', currenttitle);
             }
             else { // We are in hidden state so create unique title
-                currenttitle = this[hidden] ? "You no like Gifs? :( " : oldtitle; //update to whatever you want
+                currenttitle = this[hidden] ? "Hey, Come Back! :( " : oldtitle; //update to whatever you want
                 $(document).attr('title', currenttitle);
             }
  
