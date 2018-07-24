@@ -9,16 +9,17 @@
 }
 
 .jumbotron {
-    height: 80%;
+    height: 83%;
     padding: 0px;
     text-align: center;
-    background-color: #fafafa;
+    background-color: #252525;
 
 }
 
 .mainTitle {
     text-align: center;
     font-size: 28px;
+    color: white;
 }
 
 .gifCard {
@@ -70,7 +71,7 @@
 
 /* Title Jumbotron Gif */
 #gifImage2{
-    width: 200px;
+    width: 130px;
     height: auto;
     /* margin-left:40%; */
     right:10px;
@@ -101,5 +102,7 @@
   
   /* Screen width larger than 768 */
   @media screen and (min-width: 768px)  {
-
+    #gifImage2{
+       margin-left: 40px;
+    }
   }
