@@ -101,6 +101,7 @@ $(document).ready(function() {
         
                 // Setting the catImage src attribute to imageUrl
                 catImage.attr("src", imageUrl);
+                catImage.attr("id", "gifImage");
                 catImage.attr("alt", "cat image");
         
                 // Prepending the catImage to the images div

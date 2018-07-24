@@ -58,8 +58,13 @@
 .topic-button {
     margin-right: 20px;
     margin-bottom: 20px;
-
 }
+
+/* Changes size of Gifs */
+#gifImage{
+    width: 120px;
+    height: auto;
+  }
 
 /* MEDIA QUERIES ***************************************** */
 
