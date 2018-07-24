@@ -9,9 +9,11 @@
 }
 
 .jumbotron {
-    height: 70%;
-    padding: 20px;
+    height: 80%;
+    padding: 0px;
     text-align: center;
+    background-color: #fafafa;
+
 }
 
 .mainTitle {
@@ -60,12 +62,21 @@
     margin-bottom: 20px;
 }
 
-/* Changes size of Gifs */
+/* Changes size of Main Gifs */
 #gifImage{
-    width: 120px;
+    width: 220px;
     height: auto;
-  }
+}
 
+/* Title Jumbotron Gif */
+#gifImage2{
+    width: 200px;
+    height: auto;
+    /* margin-left:40%; */
+    right:10px;
+}
+
+  
 /* MEDIA QUERIES ***************************************** */
 
 /* Screen width between 0 and 640 */
@@ -78,7 +89,6 @@
         padding-right: 0%;
         padding-left: 0%;
     }
-  
   }
   
   /* Screen width between 640 and 768 */
@@ -92,5 +102,4 @@
   /* Screen width larger than 768 */
   @media screen and (min-width: 768px)  {
 
-  
   }
