@@ -82,6 +82,7 @@ $(document).ready(function() {
     
             var buttonId = event.srcElement.id;
             
+            //Add the gif play pause code..
             //now get multiple gifs at once not only one. rad up in Giphy docs.
             var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
         
