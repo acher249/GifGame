@@ -85,7 +85,7 @@ $(document).ready(function() {
             //Add the gif play pause code..
             //now get multiple gifs at once not only one. rad up in Giphy docs.
             var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
-        
+
             $.ajax({
             url: queryURL,
             method: "GET"
@@ -94,14 +94,19 @@ $(document).ready(function() {
             .then(function(response) {
                 console.log(response);
         
-                // Saving the image_original_url property
+                // Animated Gif URL
                 var imageUrl = response.data.image_original_url;
-        
+                // Still Gif URL
+                var pausedUrl = response.data.images.original_still.url;
+                console.log(pausedUrl);
                 // Creating and storing an image tag
                 var catImage = $("<img>");
         
-                // Setting the catImage src attribute to imageUrl
-                catImage.attr("src", imageUrl);
+                //Set attr for data-animate, data-still, and data-state
+                catImage.attr("src", pausedUrl);
+                catImage.attr("data-still", pausedUrl);
+                catImage.attr("data-animate", imageUrl);
+                catImage.attr("data-state", "still");
                 catImage.attr("id", "gifImage");
                 catImage.attr("alt", "cat image");
         
@@ -114,7 +119,21 @@ $(document).ready(function() {
             
         }
     })
-    
+
+    //Play and Pause when click image
+    $(document).on('click', '#gifImage', function(){
+        var state = $(this).attr("data-state");
+        console.log("data-state: " + state);
+
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("data-animate"));
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("data-still"));
+          $(this).attr("data-state", "still");
+        }
+    });
+
     //Alerts*********************
     function welcomeAlert() {    
     swal({

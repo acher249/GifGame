@@ -12,14 +12,14 @@
     height: 83%;
     padding: 0px;
     text-align: center;
-    background-color: #252525;
+    background-color: #fafafa;
 
 }
 
 .mainTitle {
     text-align: center;
     font-size: 28px;
-    color: white;
+    color: rgb(59, 59, 59);
 }
 
 .gifCard {
