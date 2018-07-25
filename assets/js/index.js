@@ -8,12 +8,12 @@ $(document).ready(function() {
 
     // Create Buttons from Array..
     for (var i = 0; i < topicsArray.length; i++) {
-    var topicBtn = $("<button>");
-    topicBtn.addClass("topic-button");
-    topicBtn.addClass(topicsArray[i]);
-    topicBtn.attr("id", topicsArray[i]);
-    topicBtn.text(topicsArray[i]);
-    $(".dropButtons").append(topicBtn);
+        var topicBtn = $("<button>");
+        topicBtn.addClass("topic-button");
+        topicBtn.addClass(topicsArray[i]);
+        topicBtn.attr("id", topicsArray[i]);
+        topicBtn.text(topicsArray[i]);
+        $(".dropButtons").append(topicBtn);
     }
 
     //This lets you press enter to replace the Add-button click
@@ -81,10 +81,11 @@ $(document).ready(function() {
         if (event.target.classList.contains("topic-button")) {
     
             var buttonId = event.srcElement.id;
+            var gifPullCount = 10;
             
-            //Add the gif play pause code..
             //now get multiple gifs at once not only one. rad up in Giphy docs.
-            var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + buttonId;
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            buttonId + "&api_key=dc6zaTOxFJmzC&limit=" + gifPullCount;
 
             $.ajax({
             url: queryURL,
@@ -92,31 +93,41 @@ $(document).ready(function() {
             })
             
             .then(function(response) {
-                console.log(response);
+                var results = response.data;
+                console.log(results);
         
-                // Animated Gif URL
-                var imageUrl = response.data.image_original_url;
-                // Still Gif URL
-                var pausedUrl = response.data.images.original_still.url;
-                console.log(pausedUrl);
-                // Creating and storing an image tag
-                var catImage = $("<img>");
-        
-                //Set attr for data-animate, data-still, and data-state
-                catImage.attr("src", pausedUrl);
-                catImage.attr("data-still", pausedUrl);
-                catImage.attr("data-animate", imageUrl);
-                catImage.attr("data-state", "still");
-                catImage.attr("id", "gifImage");
-                catImage.attr("alt", "cat image");
-        
-                // Prepending the catImage to the images div
-                $(".dropImages").append(catImage);
+                for (var i = 0; i < results.length; i++){
+                    
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+
+                        var rating = results[i].rating;
+                        // Animated Gif URL
+                        var imageUrl = results[i].url;
+                        console.log("ImageURL: " + imageUrl);
+                        // Still Gif URL
+                        var pausedUrl = results[i].images.original_still.url;
+                        console.log("PausedURL: " + pausedUrl);
+                        // Creating and storing an image tag
+                        var catImage = $("<img>");
+                
+                        //Set attr for data-animate, data-still, and data-state
+                        catImage.attr("src", pausedUrl);
+                        catImage.attr("data-still", pausedUrl);
+                        catImage.attr("data-animate", imageUrl);
+                        catImage.attr("data-state", "still");
+                        catImage.attr("id", "gifImage");
+                        catImage.attr("alt", "cat image");
+                        var p = $("<p>").text("Rating: " + rating);
+                
+                        // Append the catImage to the images div
+                        $(".dropImages").append(catImage);
+                        $(".dropImages").append(p);
+                    }
+
+                }
 
                 document.getElementById("inputForm").focus();
-
             });
-            
         }
     })
 
