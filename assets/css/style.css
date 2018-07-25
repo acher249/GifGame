@@ -20,11 +20,22 @@
     text-align: center;
     font-size: 28px;
     color: rgb(59, 59, 59);
+    float:left;
+    margin-top: 80px;
+    margin-left: 80px;
+}
+
+.rowHeight {
+    height: 250px;
 }
 
 .gifCard {
     margin-top: 35px;
     height: 230%;
+}
+
+#gifImage2 {
+    height: 100%
 }
 
 .btn {
@@ -63,18 +74,9 @@
     margin-bottom: 20px;
 }
 
-/* Changes size of Main Gifs */
-#gifImage{
-    width: 320px;
-    height: auto;
-}
-
-/* Title Jumbotron Gif */
-#gifImage2{
-    width: 130px;
-    height: auto;
-    /* margin-left:40%; */
-    right:10px;
+#clear-Button {
+    float:right;
+    margin-right: 5px;
 }
 
   

@@ -1,6 +1,7 @@
 //ADD GIF Button ************************************
 //original array displayed on start
 var topicsArray = ["Pig","Llama","Cat","Dog"];
+var gifPullCount = 10;
 
 $(document).ready(function() {
     welcomeAlert();
@@ -29,6 +30,23 @@ $(document).ready(function() {
         welcomeAlert.then();
     });
 
+    //Clear Gifs on button click
+    $(document).on('click', '#clear-Button', function(){
+        console.log("clear button clicked");
+        for(i=0; i<gifPullCount; i++){
+            //delete gif
+            var gifImageToDelete= document.getElementById('gifImage');
+            gifImageToDelete.parentNode.removeChild(gifImageToDelete);
+            //delete rating
+            var ratingToDelete= document.getElementById('ratingP');
+            ratingToDelete.parentNode.removeChild(ratingToDelete);
+            //delete title
+            var ratingToDelete= document.getElementById('titleP');
+            ratingToDelete.parentNode.removeChild(ratingToDelete);
+        }
+    });
+
+
     $(document).on('click', '#add-Button', function(){
     
         var newGifInput = $(".form-control").val();
@@ -36,7 +54,7 @@ $(document).ready(function() {
 
         if(newGifInput.length > 0){
             if(topicsArray.includes(newGifInput)){
-                // console.log('A ' + newGifInput + ' button already exists.');
+
                 $(".form-control").val("");
                 //Alert
                 swal({
@@ -81,7 +99,6 @@ $(document).ready(function() {
         if (event.target.classList.contains("topic-button")) {
     
             var buttonId = event.srcElement.id;
-            var gifPullCount = 10;
             
             //now get multiple gifs at once not only one. rad up in Giphy docs.
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -101,12 +118,14 @@ $(document).ready(function() {
                     if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
                         var rating = results[i].rating;
+                        var title = results[i].title;
+
                         // Animated Gif URL
-                        var imageUrl = results[i].url;
-                        console.log("ImageURL: " + imageUrl);
+                        var imageUrl = results[i].images.original.url;
+                        // console.log("ImageURL: " + imageUrl);
                         // Still Gif URL
                         var pausedUrl = results[i].images.original_still.url;
-                        console.log("PausedURL: " + pausedUrl);
+                        // console.log("PausedURL: " + pausedUrl);
                         // Creating and storing an image tag
                         var catImage = $("<img>");
                 
@@ -117,11 +136,17 @@ $(document).ready(function() {
                         catImage.attr("data-state", "still");
                         catImage.attr("id", "gifImage");
                         catImage.attr("alt", "cat image");
-                        var p = $("<p>").text("Rating: " + rating);
+                        //Add Gif Rating
+                        var ratingP = $("<p>").text("Rating: " + rating);
+                        ratingP.attr("id", "ratingP");
+                        //Add Gif Title
+                        var titleP = $("<p>").text("Gif Title: " + title);
+                        titleP.attr("id", "titleP");
                 
                         // Append the catImage to the images div
                         $(".dropImages").append(catImage);
-                        $(".dropImages").append(p);
+                        $(".dropImages").append(ratingP);
+                        $(".dropImages").append(titleP);
                     }
 
                 }
@@ -133,6 +158,7 @@ $(document).ready(function() {
 
     //Play and Pause when click image
     $(document).on('click', '#gifImage', function(){
+
         var state = $(this).attr("data-state");
         console.log("data-state: " + state);
 
